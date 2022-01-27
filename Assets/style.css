@@ -1,0 +1,14 @@
+.jumbotron{
+    background-color: rgb(255, 71, 102);
+    color: whitesmoke;
+}
+
+.employee-card{
+    background-color: rgb(71, 129, 255);
+    color: whitesmoke;
+}
+
+.card-body{
+    color: black
+}
+
