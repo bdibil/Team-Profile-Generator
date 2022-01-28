@@ -6,19 +6,24 @@ const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
 const Manager = require("./lib/Manager");
 const Intern = require("./lib/Intern");
+const { Console } = require('console');
 
 
-//      Test    Team 
+//      MY      Test     Team 
 let eng1 = new Engineer('Bernardo', 1, 'bdibil@test.com', 'bdibil')
 let man1 = new Manager('Boss', 2, 'boss@test.com', 101)
 let int1 = new Intern('John', 3, 'john@test.com', "UW")
-
 let group1 = [eng1, man1, int1]
 
 
+//      User    generated     Team      Array
+let manArray = []
+let engArray = []
+let intArray = []
 
-// Array of questions for user input
-const questions = ['What is your project Title? ', 'Briefly Describe your project: ', 'Describe how to Install the project: ', 'How do you Use your application? ', 'What are the Contribution guidelines? ', 'Describe the Tests used: ', 'What is your Github username? ', 'What is your Email address ? ', 'Please choose one of the following licenses:'];
+let manId = 100
+let engId = 200
+let intId = 300
 
 
 // Constructor function for questions
@@ -29,9 +34,32 @@ function Question(type, message, name, choices) {
     this.choices = choices;
 }
 
+// Array of questions for user input
+const managerQs = ['Please enter the team Manager name: ', 'What is the Manager Email address? ', 'What about office number? ']
+const engineerQs = ['Please enter the Engineer name: ', 'What is the Engineer Email address? ', 'What is the Engineer Github username? ']
+const internQs = ['Please enter the Intern name: ', 'What is the Intern Email address? ', 'What is the Intern School? ']
+const addEmployee = ['Do you want to add an Engineer, an Intern, or finish building the team? ']
 
 
+// Define all questions
+const employeeChoice = ['Add Engineer', 'Add Intern', 'I finished building my team']
+const userEmployee = new Question('list', addEmployee, 'choice', employeeChoice )
 
+
+// let test = inquirer.prompt(userEmployee)
+// console.log(userEmployee)
+
+const manName = new Question('input', managerQs[0], 'manName')
+const manEmail = new Question('input', managerQs[1], 'manEmail')
+const manOffice = new Question('input', managerQs[2], 'manOffice')
+
+const engName = new Question('input', engineerQs[0], 'engName')
+const engEmail = new Question('input',  engineerQs[1], 'engEmail')
+const engGithub = new Question('input', engineerQs[2], 'engGithub')
+
+const intName = new Question('input', internQs[0],  'intName')
+const intEmail = new Question('input', internQs[1], 'intEmail')
+const intSchool = new Question('input', internQs[2], 'intSchool')
 
 
 function makeGroupCards(team) {
@@ -152,7 +180,6 @@ function makeFullSite (group) {
 }
 
 
-
 function genHtml(group) {
 
     fs.writeFile('./dist/index.html', makeFullSite(group), (err) => {
@@ -163,20 +190,56 @@ function genHtml(group) {
 
 
 
-// Function   to    Ask User info about their project and call  >>  genHtml
-const askInfo = () => {
-    inquirer.prompt([userTitle, userDescription, userInstall, userUsage, userLicense, userContribute, userTests, userGithub, userEmail])
-        .then((response) => {
-            fs.writeFile('OUTPUT_README.md', genReadme(response), (err) => {
-                if (err) throw err
-            })
-        });
+    
+// Function   to    Ask User info about their team and call     >>      genHtml
+
+const askInfo = async () => {
+    const ansZero = await inquirer.prompt([manName, manEmail, manOffice])
+    let newManager = new Manager(ansZero.manName, manId, ansZero.manEmail, ansZero.manOffice)
+    manArray.push(newManager)
+    manId++
+    let again = true;
+    do { 
+        const ansOne = await inquirer.prompt([userEmployee])
+        // console.table(ansOne)
+        let ansTwo
+        let newEngineer
+        let newIntern
+        // console.log(ansOne.choice)
+        switch (ansOne.choice) {
+            case 'Add Engineer':
+                ansTwo = await inquirer.prompt([engName, engEmail, engGithub])
+                newEngineer = new Engineer(ansTwo.engName, engId, ansTwo.engEmail, ansTwo.engGithub)
+                engArray.push(newEngineer)
+                engId++
+                // console.table(engArray)
+                break;
+        
+            case 'Add Intern':
+                ansTwo = await inquirer.prompt([intName, intEmail, intSchool])
+                newIntern = new Intern(ansTwo.intName, intId, ansTwo.intEmail, ansTwo.intSchool)
+                intArray.push(newIntern)
+                intId++
+                // console.table(intArray)
+                break;
+        
+            case 'I finished building my team':
+                again = false;
+                break;
+        
+            default:
+                throw new Error("Something went wrong")
+        }
+
+    } while (again == true)
+    let userTeam = manArray.concat(engArray, intArray)
+    // console.table(userTeam)
+    genHtml(userTeam)
 };
 
 
-
-genHtml(group1)
-
+askInfo()
 
 
+// genHtml(group1)
 
