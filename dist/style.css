@@ -3,10 +3,19 @@
     color: whitesmoke;
 }
 
+.card{
+    padding: 20px;
+    margin: 20px;
+    /* display: flex; */
+}
+
+
 .employee-card{
     background-color: rgb(71, 129, 255);
     color: whitesmoke;
 }
+
+
 
 .card-body{
     color: black

@@ -7,29 +7,14 @@ const Engineer = require("./lib/Engineer");
 const Manager = require("./lib/Manager");
 const Intern = require("./lib/Intern");
 
+// const generateHtml = require("./util/generateHtml");
 
-//      Test    Team 
+
 let eng1 = new Engineer('Bernardo', 1, 'bdibil@test.com', 'bdibil')
 let man1 = new Manager('Boss', 2, 'boss@test.com', 101)
-let int1 = new Intern('John', 3, 'john@test.com', "UW")
+let int1 = new Intern('Daniel', 3, 'dan@test.com', "UP Medicine")
 
 let group1 = [eng1, man1, int1]
-
-
-
-// Array of questions for user input
-const questions = ['What is your project Title? ', 'Briefly Describe your project: ', 'Describe how to Install the project: ', 'How do you Use your application? ', 'What are the Contribution guidelines? ', 'Describe the Tests used: ', 'What is your Github username? ', 'What is your Email address ? ', 'Please choose one of the following licenses:'];
-
-
-// Constructor function for questions
-function Question(type, message, name, choices) {
-    this.type = type;
-    this.message = message;
-    this.name = name;
-    this.choices = choices;
-}
-
-
 
 
 
@@ -152,31 +137,27 @@ function makeFullSite (group) {
 }
 
 
+fs.writeFile('./dist/index.html', makeFullSite(group1), (err) => {
+    if (err) throw err
+})
 
-function genHtml(group) {
 
-    fs.writeFile('./dist/index.html', makeFullSite(group), (err) => {
-        if (err) throw err
-    })
 
+
+
+
+//////////////       TEST         Code        Below       /////////
+
+
+
+
+// Array of questions for user input
+const questions = ['What is your project Title? ', 'Briefly Describe your project: ', 'Describe how to Install the project: ', 'How do you Use your application? ', 'What are the Contribution guidelines? ', 'Describe the Tests used: ', 'What is your Github username? ', 'What is your Email address ? ', 'Please choose one of the following licenses:'];
+
+// Constructor function for questions
+function Question(type, message, name, choices) {
+    this.type = type;
+    this.message = message;
+    this.name = name;
+    this.choices = choices;
 }
-
-
-
-// Function   to    Ask User info about their project and call  >>  genHtml
-const askInfo = () => {
-    inquirer.prompt([userTitle, userDescription, userInstall, userUsage, userLicense, userContribute, userTests, userGithub, userEmail])
-        .then((response) => {
-            fs.writeFile('OUTPUT_README.md', genReadme(response), (err) => {
-                if (err) throw err
-            })
-        });
-};
-
-
-
-genHtml(group1)
-
-
-
-

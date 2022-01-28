@@ -3,6 +3,17 @@
     color: whitesmoke;
 }
 
+
+/* .card{
+    padding: 20px;
+    margin: 10px;
+    display: flex;
+} */
+
+/* .team-area{
+    justify-content: space-evenly;
+} */
+
 .employee-card{
     background-color: rgb(71, 129, 255);
     color: whitesmoke;
