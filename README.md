@@ -3,7 +3,7 @@
 ## Description  
 - Generates an HTML file at `./dist/index.html` for my team members and their information based on user input
 - The application has `Employee`, `Manager`, `Engineer`, and `Intern` classes.
-- It uses the [Inquirer package](<a href="https://www.npmjs.com/package/inquirer" target="_blank"</a>)
+- It uses the [Inquirer package](https://www.npmjs.com/package/inquirer)
   
 
 
@@ -28,7 +28,7 @@ To use this application:
 
 A walkthrough video is included below: 
 
-  [Team Profile Generator - Walkthrough](<a href="https://youtu.be/a4lkWGBPpEQ" target="_blank"</a>)
+  [Team Profile Generator - Walkthrough](https://youtu.be/a4lkWGBPpEQ)
 
 
 ## License  
@@ -61,7 +61,7 @@ There are no contributing guidelines at this time.
 
 ## Tests     
 There are 4 unit Tests (one for each class in the`./_tests_` folder)
-- All 4 tests passed using the [Jest package](<a href="https://www.npmjs.com/package/jest" target="_blank"</a>)
+- All 4 tests passed using the [Jest package](https://www.npmjs.com/package/jest)
 - Tests are shown at the start of the Walkthrough Video at under [Usage](#usage) section 
 
 
