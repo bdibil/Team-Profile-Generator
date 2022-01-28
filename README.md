@@ -1,9 +1,10 @@
 # Team Profile Generator <Team Profile Generator>
   
 ## Description  
-- This project is a command-line application that ...
--
--
+- Generates an HTML file at `./dist/index.html` for my team members and their information based on user input
+- The application has `Employee`, `Manager`, `Engineer`, and `Intern` classes.
+- It uses the [Inquirer package](https://www.npmjs.com/package/inquirer)
+  
 
 
 ## Table of Contents 
@@ -23,7 +24,7 @@ To install this application:
 ## Usage    
 To use this application:
 1. Run `node index.js` on your Node.js terminal
-2. Respond to the command-line application ....
+2. Respond to the command-line application 
 
 A walkthrough video is included below: 
 
@@ -59,7 +60,8 @@ There are no contributing guidelines at this time.
 
 
 ## Tests     
-Tests for this app are ....
+There are 4 unit Tests (one for each class in the`./_tests_` folder
+- All 4 tests passed using the [Jest package](https://www.npmjs.com/package/jest) 
 
 
 ## Questions 
